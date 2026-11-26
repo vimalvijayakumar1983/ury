@@ -120,11 +120,7 @@ const Header = () => {
         {/* Logo */}
         <div className="flex items-center">
         <Link to="/dashboard" className="flex items-center gap-3">
-            <img
-              src="/assets/ury/pos/ury_pos.png"
-              alt="URY POS" 
-              className="h-10 w-auto"
-            />
+            <span className="text-lg font-bold tracking-tight">VAV POS</span>
           </Link>
         </div>
 

@@ -175,6 +175,8 @@ export function DailyPnl() {
   }, [fetchData]);
 
   const summaryMap = new Map((data?.summary ?? []).map((r) => [r.key, r]));
+  const hasMissingPrices = Boolean(data?.missing_prices?.length) ||
+    Boolean(data?.remarks?.startsWith('BUYING PRICE NOT SET'));
   const rest = (data?.summary ?? []).filter((r) => !HERO_KEYS.includes(r.key));
 
   return (
@@ -267,14 +269,14 @@ export function DailyPnl() {
               icon={<TrendingUp className="w-4 h-4" />}
             />
             <StatCard
-              label="Gross Profit"
+              label={hasMissingPrices ? 'Gross Profit (provisional)' : 'Gross Profit'}
               value={`${formatCurrency(summaryMap.get('gross_profit')?.amount ?? 0)} (${Number(
                 summaryMap.get('gross_profit')?.percent ?? 0
               ).toFixed(1)}%)`}
               icon={<Percent className="w-4 h-4" />}
             />
             <StatCard
-              label="Net Profit"
+              label={hasMissingPrices ? 'Net Profit (provisional)' : 'Net Profit'}
               value={`${formatCurrency(summaryMap.get('net_profit')?.amount ?? 0)} (${Number(
                 summaryMap.get('net_profit')?.percent ?? 0
               ).toFixed(1)}%)`}
@@ -295,7 +297,7 @@ export function DailyPnl() {
             <CardContent className="space-y-1">
               {rest.map((r) => (
                 <div key={r.key} className="flex items-center justify-between text-sm py-1.5 border-b last:border-0">
-                  <span>{r.label}</span>
+                  <span>{r.key === 'cogs' && hasMissingPrices ? 'Cost of Goods Sold (incomplete)' : r.label}</span>
                   <span className="font-medium">
                     {formatCurrency(r.amount)}{' '}
                     <span className="text-xs text-muted-foreground">({Number(r.percent).toFixed(1)}%)</span>
@@ -319,7 +321,7 @@ export function DailyPnl() {
           {data.cost_of_goods && data.cost_of_goods.length > 0 && (
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Cost of Goods Sold</CardTitle>
+                <CardTitle className="text-base">{hasMissingPrices ? 'Cost of Goods Sold (incomplete)' : 'Cost of Goods Sold'}</CardTitle>
               </CardHeader>
               <CardContent className="overflow-x-auto">
                 <table className="w-full text-sm">

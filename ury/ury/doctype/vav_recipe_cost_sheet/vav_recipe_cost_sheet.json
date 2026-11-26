@@ -1,0 +1,137 @@
+{
+ "doctype": "DocType",
+ "name": "VAV Recipe Cost Sheet",
+ "module": "URY",
+ "engine": "InnoDB",
+ "modified": "2026-11-26 00:00:00",
+ "field_order": [
+  "dish",
+  "company",
+  "branch",
+  "costing_date",
+  "currency",
+  "portions",
+  "selling_price",
+  "ingredients",
+  "results",
+  "batch_cost",
+  "portion_cost",
+  "food_cost_percent"
+ ],
+ "fields": [
+  {
+   "fieldname": "dish",
+   "fieldtype": "Link",
+   "label": "Menu item",
+   "options": "Item",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Branch",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "costing_date",
+   "fieldtype": "Date",
+   "label": "Costing date",
+   "default": "Today",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "fetch_from": "company.default_currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "portions",
+   "fieldtype": "Float",
+   "label": "Saleable portions per batch",
+   "reqd": 1,
+   "precision": "4"
+  },
+  {
+   "fieldname": "selling_price",
+   "fieldtype": "Currency",
+   "label": "Selling price per portion, excluding tax",
+   "reqd": 1,
+   "options": "currency",
+   "precision": "4"
+  },
+  {
+   "fieldname": "ingredients",
+   "fieldtype": "Table",
+   "label": "Recipe ingredients",
+   "options": "VAV Recipe Ingredient",
+   "reqd": 1,
+   "description": "Use the same unit for pack size and usable batch quantity on each line. Enter all prices in the company currency."
+  },
+  {
+   "fieldname": "results",
+   "fieldtype": "Section Break",
+   "label": "Expected food cost"
+  },
+  {
+   "fieldname": "batch_cost",
+   "fieldtype": "Currency",
+   "label": "Batch ingredient cost",
+   "options": "currency",
+   "precision": "4",
+   "read_only": 1
+  },
+  {
+   "fieldname": "portion_cost",
+   "fieldtype": "Currency",
+   "label": "Ingredient cost per portion",
+   "options": "currency",
+   "precision": "4",
+   "read_only": 1
+  },
+  {
+   "fieldname": "food_cost_percent",
+   "fieldtype": "Percent",
+   "label": "Food cost as a percentage of selling price",
+   "precision": "2",
+   "read_only": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "print": 1,
+   "report": 1
+  },
+  {
+   "role": "URY Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "print": 1,
+   "report": 1
+  }
+ ],
+ "autoname": "format:VAV-RC-{#####}",
+ "title_field": "dish",
+ "show_title_field_in_link": 1,
+ "track_changes": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

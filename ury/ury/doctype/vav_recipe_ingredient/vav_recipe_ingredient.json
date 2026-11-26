@@ -1,0 +1,93 @@
+{
+ "doctype": "DocType",
+ "name": "VAV Recipe Ingredient",
+ "module": "URY",
+ "engine": "InnoDB",
+ "modified": "2026-11-26 00:00:00",
+ "field_order": [
+  "ingredient",
+  "uom",
+  "pack_size",
+  "pack_cost",
+  "yield_percent",
+  "usable_qty",
+  "line_cost",
+  "price_reference"
+ ],
+ "fields": [
+  {
+   "fieldname": "ingredient",
+   "fieldtype": "Link",
+   "label": "Ingredient",
+   "options": "Item",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "Unit",
+   "options": "UOM",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "pack_size",
+   "fieldtype": "Float",
+   "label": "Purchased pack size",
+   "reqd": 1,
+   "precision": "6",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "pack_cost",
+   "fieldtype": "Currency",
+   "label": "Pack cost",
+   "reqd": 1,
+   "precision": "4",
+   "options": "parent.currency",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "yield_percent",
+   "fieldtype": "Percent",
+   "label": "Usable yield (%)",
+   "reqd": 1,
+   "default": "100",
+   "precision": "4",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "usable_qty",
+   "fieldtype": "Float",
+   "label": "Usable quantity for batch",
+   "reqd": 1,
+   "precision": "6",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "line_cost",
+   "fieldtype": "Currency",
+   "label": "Batch ingredient cost",
+   "options": "parent.currency",
+   "precision": "4",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "price_reference",
+   "fieldtype": "Data",
+   "label": "Invoice or price reference"
+  }
+ ],
+ "permissions": [],
+ "istable": 1,
+ "editable_grid": 1
+}
