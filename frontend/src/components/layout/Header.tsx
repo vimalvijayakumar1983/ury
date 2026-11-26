@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useBranchContext } from '../../context/BranchContext';
 import { logout, call, getLoggedUser, getUserRoles } from '@ury/core';
-import uryLogo from '../../../Public/photo_2026-08-19_13-24-09.jpg';
+
 import {
   Bell,
   User,
@@ -135,7 +135,7 @@ export const Header: React.FC = () => {
         {/* Left Section: Logo & Brand */}
         <div className="flex items-center space-x-3">
           <Link to="/dashboard" className="flex items-center space-x-3 group">
-            <img src={uryLogo} alt="URY Logo" className="h-7 w-auto" />
+            <span className="text-lg font-bold tracking-tight">VAV POS</span>
           </Link>
         </div>
 

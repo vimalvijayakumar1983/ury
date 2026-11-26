@@ -42,7 +42,15 @@ export const DashboardPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* 1. KPI Stat Cards Grid */}
+      <nav aria-label="Restaurant workspace" className="flex flex-wrap items-center gap-3">
+        <a href="/pos" className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground">
+          Open cashier POS
+        </a>
+        <a href="/app/vav-recipe-cost-sheet" className="rounded-lg border px-4 py-2 text-sm font-semibold">
+          Recipe cost sheets
+        </a>
+      </nav>
+
       <KPIGrid summary={summary} loading={loading} />
 
       {/* 2. Analytics & Distribution Charts (Commented out for now) */}
